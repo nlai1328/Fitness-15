@@ -7,8 +7,6 @@ import Header from "../components/header";
 import Homepage from "../screens/home";
 import Profilepage from "../screens/profile";
 import Helppage from "../screens/help";
-import { color } from "react-native-reanimated";
-import { backgroundColor } from "styled-system";
 
 function Home() {
   return (
