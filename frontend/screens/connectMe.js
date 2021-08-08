@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity} from "react-native"
 
-function Login({ navigator }) {
+function ConnectMe({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>You're logging in!</Text>
+      <Text style={styles.title}>ConnectMe Page</Text>
     </View>
   );
 }
@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     paddingBottom: 20,
   },
-  
 })
 
-export default Login;
+export default ConnectMe;
