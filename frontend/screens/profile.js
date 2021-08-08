@@ -1,22 +1,38 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image} from "react-native"
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { withSafeAreaInsets } from "react-native-safe-area-context";
 
-
 function MyAccount({ navigation }) {
-  const [current, Setcurrent] = useState()
   const logoutHandler = () => {
-    navigation.navigate("Login")
-    Setcurrent
-  }
-  
+    navigation.navigate("Login");
+  };
+
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("./../assets/defaultProfile.png")}/>
-      <Text style={styles.attribute}>Name: {global.currentUser[0]["firstName"] + " " + global.currentUser[0]["lastName"]}</Text>
-      <Text style={styles.attribute}>Email: {global.currentUser[0]["email"]} </Text>
-      <Text style={styles.attribute}>Phone Number: {global.currentUser[0]["phone"]} </Text>
+      <Image
+        style={styles.image}
+        source={require("./../assets/defaultProfile.png")}
+      />
+      <Text style={styles.attribute}>
+        Name:{" "}
+        {global.currentUser[0]["firstName"] +
+          " " +
+          global.currentUser[0]["lastName"]}
+      </Text>
+      <Text style={styles.attribute}>
+        Email: {global.currentUser[0]["email"]}{" "}
+      </Text>
+      <Text style={styles.attribute}>
+        Phone Number: {global.currentUser[0]["phone"]}{" "}
+      </Text>
       <TouchableOpacity onPress={logoutHandler}>
         <Text style={styles.touchable}>Log out</Text>
       </TouchableOpacity>
@@ -26,10 +42,7 @@ function MyAccount({ navigation }) {
       <FlatList
         style={styles.list}
         data={global.currentUser[0]["sport"]}
-        renderItem={({ item }) => (
-          <Text style={styles.item}>{item}</Text>
-        )
-        }
+        renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
       />
     </View>
   );
@@ -39,19 +52,17 @@ const styles = StyleSheet.create({
   attribute: {
     fontSize: 20,
     marginBottom: 20,
-    backgroundColor: "orange",
+    backgroundColor: "#5DA2D5",
     width: "90%",
     color: "white",
-    fontWeight: "bold",
     paddingVertical: 10,
     paddingLeft: 20,
-
   },
   container: {
     flex: 1,
     paddingLeft: 30,
     paddingTop: 20,
-    backgroundColor: "lightgray"
+    backgroundColor: "#ECECEC",
   },
   image: {
     height: 120,
@@ -68,31 +79,29 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginRight: 10,
     color: "white",
-    backgroundColor: "lightpink",
+    backgroundColor: "#90CCF4",
     paddingLeft: 10,
     paddingVertical: 10,
     marginBottom: 20,
-
   },
   sportTitle: {
     fontSize: 20,
-    color: "white",
+    color: "#464866",
     fontWeight: "bold",
-
   },
   sportTitleContainer: {
     marginBottom: 20,
     paddingBottom: 10,
     borderBottomColor: "orange",
     borderBottomWidth: 1,
-    width: "90%"
+    width: "90%",
   },
   touchable: {
     fontSize: 20,
-    color: "brown",
+    color: "#25274D",
     textAlign: "center",
     paddingRight: 30,
-  }
-})
+  },
+});
 
 export default MyAccount;

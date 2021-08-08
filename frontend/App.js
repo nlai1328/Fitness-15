@@ -14,14 +14,16 @@ import Home from "./screens/home";
 import ConnectMe from "./screens/connectMe";
 import Profile from "./screens/profile";
 import Help from "./screens/help";
-import MatchedProfile from "./screens/matchedProfile"
+import MatchedProfile from "./screens/matchedProfile";
+import GymDetails from './screens/GymDetails';
 
 const HomeStack = createStackNavigator();
 const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen name="MatchedProfile" component={MatchedProfile} />
+      <HomeStack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+      <HomeStack.Screen name="GymDetails" component={GymDetails} />
+      <HomeStack.Screen name="MatchedProfile" component={MatchedProfile} options={{ title: "You got a Match!"}}/>
     </HomeStack.Navigator>
   );
 };

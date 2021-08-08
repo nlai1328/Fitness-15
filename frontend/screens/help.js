@@ -10,7 +10,7 @@ function Help({ navigation }) {
           <Text style={styles.option}>Report a Problem</Text>
         </View>
         <View style={styles.end}>
-        <Text style={styles.next}></Text>
+        <Text style={styles.next}>></Text>
         </View>
       </View>
       </TouchableOpacity>
@@ -20,7 +20,7 @@ function Help({ navigation }) {
           <Text style={styles.option}>Help Center</Text>
         </View>
         <View style={styles.end}>
-        <Text style={styles.next}></Text>
+        <Text style={styles.next}>></Text>
         </View>
       </View>
       </TouchableOpacity>
@@ -30,7 +30,7 @@ function Help({ navigation }) {
           <Text style={styles.option}>Support Requests</Text>
         </View>
         <View style={styles.end}>
-        <Text style={styles.next}></Text>
+        <Text style={styles.next}>></Text>
         </View>
       </View>
       </TouchableOpacity>
@@ -40,7 +40,7 @@ function Help({ navigation }) {
           <Text style={styles.option}>Privacy and Security Help</Text>
         </View>
         <View style={styles.end}>
-        <Text style={styles.next}></Text>
+        <Text style={styles.next}>></Text>
         </View>
       </View>
       </TouchableOpacity>
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 20,
     paddingTop: 20,
+    backgroundColor: "#ECECEC"
   },
   end: {
     flex: 1,
