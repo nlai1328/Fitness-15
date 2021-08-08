@@ -8,16 +8,10 @@ function Welcome({ navigation }) {
   const signUpHandler = () => {
     navigation.navigate("SignUp")
   }
-
-  const goToHomePageHandler = () => {
-    navigation.navigate("Home")
-  }
   
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={goToHomePageHandler}>
-        <Image style={styles.image} source={require("./../assets/Fitness_15_logo.png")}/>
-      </TouchableOpacity>
+      <Image style={styles.image} source={require("./../assets/Fitness_15_logo.png")}/>
       <TouchableOpacity style={styles.optionContainer} onPress={loginHandler}>
         <Text style={styles.option}>Log in</Text>
       </TouchableOpacity>
@@ -44,7 +38,7 @@ const styles = StyleSheet.create({
   option: {
     fontSize: 30,
     paddingVertical: 10,
-    color: "purple",
+    color: "black",
   },
   optionContainer: {
     backgroundColor: "#eee",

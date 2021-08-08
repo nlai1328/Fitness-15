@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Alert, TouchableOpacity, FlatList } from 'react-native';
-import * as Location from 'expo-location';
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Alert,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import * as Location from "expo-location";
 
 const NearbyGyms = ({ navigation }) => {
   const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
 
-  const [displayLocalGyms, setDisplayLocalGyms] = useState(
-    [{name: "Waiting for API..."}]
-  );
+  const [displayLocalGyms, setDisplayLocalGyms] = useState([
+    { name: "Waiting for API..." },
+  ]);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     CheckIfLocationEnabled();
@@ -21,48 +29,44 @@ const NearbyGyms = ({ navigation }) => {
 
     if (!enabled) {
       Alert.alert(
-        'Location Service not enabled',
-        'Please enable your location services to continue',
-        [{ text: 'OK' }],
+        "Location Service not enabled",
+        "Please enable your location services to continue",
+        [{ text: "OK" }],
         { cancelable: false }
       );
     } else {
       setLocationServiceEnabled(enabled);
     }
   };
-  var gymData = {}
-  function httpGetAsync(theUrl, callback)
-  {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.onreadystatechange = function() { 
-          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText)
-      }
-      xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-      xmlHttp.send(null);
+  var gymData = {};
+  function httpGetAsync(theUrl, callback) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        callback(xmlHttp.responseText);
+    };
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.send(null);
   }
 
-
-  function getGymData(responseText)
-  {
+  function getGymData(responseText) {
     gymData = JSON.parse(responseText);
-    let nearbyGyms = []
-    for(let i=0; i<5;i++){
-      nearbyGyms.push(gymData['results'][i])
+    let nearbyGyms = [];
+    for (let i = 0; i < 5; i++) {
+      nearbyGyms.push(gymData["results"][i]);
     }
-    setDisplayLocalGyms(nearbyGyms)
-    console.log(displayLocalGyms)
+    setDisplayLocalGyms(nearbyGyms);
+    console.log(displayLocalGyms);
     setIsLoggedIn(true);
   }
   const GetCurrentLocation = async () => {
-    
     let { status } = await Location.requestForegroundPermissionsAsync();
 
-    if (status !== 'granted') {
+    if (status !== "granted") {
       Alert.alert(
-        'Permission not granted',
-        'Allow the app to use location service.',
-        [{ text: 'OK' }],
+        "Permission not granted",
+        "Allow the app to use location service.",
+        [{ text: "OK" }],
         { cancelable: false }
       );
     }
@@ -73,35 +77,31 @@ const NearbyGyms = ({ navigation }) => {
       const { latitude, longitude } = coords;
       let response = await Location.reverseGeocodeAsync({
         latitude,
-        longitude
+        longitude,
       });
-      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyA0fGjHA7DqqORQt62lE59MK3HPMM6SQNo&location=${latitude},${longitude}&radius=5000&type=gym`
-      httpGetAsync(url, getGymData)
+      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyA0fGjHA7DqqORQt62lE59MK3HPMM6SQNo&location=${latitude},${longitude}&radius=5000&type=gym`;
+      httpGetAsync(url, getGymData);
     }
   };
 
   const gymDescHandler = (item) => {
-    navigation.navigate("GymDetails", item)
-  }
+    navigation.navigate("GymDetails", item);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={styles.title}>Local Gyms:</Text>
       </View>
-      {isLoggedIn &&
+      {isLoggedIn && (
         <FlatList
           data={displayLocalGyms}
-          
-          
-          renderItem={({item})=>( 
-            <TouchableOpacity onPress={()=>gymDescHandler(item)}>
-              <Text style={styles.text}>
-                {item["name"]}
-              </Text>
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => gymDescHandler(item)}>
+              <Text style={styles.text}>{item["name"]}</Text>
             </TouchableOpacity>
           )}
         />
-      }
+      )}
     </View>
   );
 };
@@ -109,30 +109,30 @@ const NearbyGyms = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#070707',
-    alignItems: 'center',
-    paddingTop: 130
+    backgroundColor: "#070707",
+    alignItems: "center",
+    paddingTop: 130,
   },
   contentContainer: {
-    alignItems: 'center',
-    marginBottom: 20
+    alignItems: "center",
+    marginBottom: 20,
   },
   image: {
     width: 150,
     height: 150,
-    resizeMode: 'contain',
-    marginBottom: 20
+    resizeMode: "contain",
+    marginBottom: 20,
   },
   title: {
     fontSize: 22,
-    fontWeight: '700',
-    color: '#FD0139'
+    fontWeight: "700",
+    color: "#FD0139",
   },
   text: {
     fontSize: 14,
-    fontWeight: '400',
-    color: '#fff'
-  }
+    fontWeight: "400",
+    color: "#fff",
+  },
 });
 
 export default NearbyGyms;

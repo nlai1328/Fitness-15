@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, FlatList, Image} from "react-native"
 
 function MyAccount({ navigation, route }) {
-  const [sports, setSports] = useState([
-    {sport: "skiing", key: "1"},
-    {sport: "snowboarding", key: "2"},
-    {sport: "badminton", key: "3"},
-    {sport: "overwatch", key: "4"},
-  ])
   const match = route.params
 
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("./../assets/defaultProfile.png")}/>
+      <Text style={styles.attribute}>Name: {match["firstName"] + " " + match["lastName"]}</Text>
+      <Text style={styles.attribute}>Email: {match["email"]}</Text>
+      <Text style={styles.attribute}>Phone Number: {match["phone"]} </Text>
       <View style={styles.sportTitleContainer}>
         <Text style={styles.sportTitle}>Sports in Common</Text>
       </View>
@@ -23,9 +20,7 @@ function MyAccount({ navigation, route }) {
           <Text style={styles.item}>{item}</Text>
         )}
       />
-      <Text style={styles.attribute}>Name: {match["firstName"] + " " + match["lastName"]}</Text>
-      <Text style={styles.attribute}>Email: {match["email"]}</Text>
-      <Text style={styles.attribute}>Phone Number: {match["phone"]} </Text>
+      
       
     </View>
   );
@@ -35,10 +30,10 @@ const styles = StyleSheet.create({
   attribute: {
     fontSize: 20,
     marginBottom: 20,
-    backgroundColor: "orange",
+    backgroundColor: "#5DA2D5",
     width: "87%",
     color: "white",
-    fontWeight: "bold",
+    
     paddingVertical: 10,
     paddingLeft: 20,
 
@@ -47,7 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 30,
     paddingTop: 20,
-    backgroundColor: "lightblue"
+    backgroundColor: "#ECECEC"
   },
   image: {
     height: 120,
@@ -64,7 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginRight: 10,
     color: "white",
-    backgroundColor: "lightpink",
+    backgroundColor: "#90CCF4",
     paddingLeft: 10,
     paddingVertical: 10,
     marginBottom: 20,
@@ -72,14 +67,14 @@ const styles = StyleSheet.create({
   },
   sportTitle: {
     fontSize: 20,
-    color: "white",
+    color: "#25274d",
     fontWeight: "bold",
 
   },
   sportTitleContainer: {
     marginBottom: 20,
     paddingBottom: 10,
-    borderBottomColor: "orange",
+    borderBottomColor: "#25274D",
     borderBottomWidth: 1,
     width: "90%"
   },
