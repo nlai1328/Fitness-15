@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const app = express();
 const db = mongoose.connect(
-  "mongodb+srv://nlai1328:bbonak1328@cluster0.9vwtf.mongodb.net/test",
+  "mongodb+srv://nlai1328:password@cluster0.9vwtf.mongodb.net/test",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
